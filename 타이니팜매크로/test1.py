@@ -253,26 +253,94 @@ def Q_hunt_1() :    #6모험가 확인
 
 def Q_hunt_2() :    #6모험가 모험 보내기
     search_click("Q_hunt_1_1.png")
-    time.sleep(random.uniform(1.05001, 1.79987))
-    max_retries = 3
+    sleep_2()
+    max_retries = 1
     retries  = 0
-    while True :
-        mouse_scroll(-1)
-        sleep_1()
-        mouse_scroll(-1)
-        sleep_1()
-        search_click("Q_hunt_2_2.png")
-        sleep_1()
+    pos = imagesearch("Q_hunt_2_2.png")
+    while pos[0] == -1 :
+        if retries >= max_retries:
+            search_click("Q_hunt_1_5.png")
+            search_click("Q_hunt_1_5.png")
+            sleep_2()
+            break
 
+        #모험가 첫번째 칸
         mouse_scroll(-1)
+        sleep_1()
+        mouse_move(400, 300, 450, 350)
         sleep_0()
-        mouse_scroll(-1)
-        search_click("Q_hunt_2_3.png")
+        pyautogui.click(button='left')
         sleep_1()
 
+        mouse_scroll(-1)
+        sleep_1()
+        mouse_move(510, 220, 610, 320)
+        sleep_0()
+        pyautogui.click(button='left')
+        sleep_1()
 
-        search_click("Q_hunt_2_4.png")
-        time.sleep(random.uniform(0.45001, 1.29987))
+        #모험가 확인
+        # mouse_scroll(-1)
+        sleep_1()
+        pos = imagesearch("Q_hunt_2_2.png")
+        if pos[0] != -1:
+            search_click("Q_hunt_2_2.png")
+            sleep_1()
+            search_click("Q_hunt_2_3.png")
+            pos = imagesearch("Q_hunt_1_1.png")
+            continue
+
+        #모험가 두번째 칸
+        mouse_move(480, 300, 530, 350)
+        sleep_0()
+        pyautogui.click(button='left')
+        sleep_1()
+
+        mouse_scroll(-1)
+        sleep_1()
+        mouse_move(510, 220, 610, 320)
+        sleep_0()
+        pyautogui.click(button='left')
+        sleep_1()
+
+        #모험가 확인
+        # mouse_scroll(-1)
+        sleep_1()
+        pos = imagesearch("Q_hunt_2_2.png")
+        if pos[0] != -1:
+            search_click("Q_hunt_2_2.png")
+            sleep_1()
+            search_click("Q_hunt_2_3.png")
+            pos = imagesearch("Q_hunt_1_1.png")
+            continue
+
+        #모험가 세번째 칸
+        mouse_move(560, 300, 610, 350)
+        sleep_0()
+        pyautogui.click(button='left')
+
+        sleep_1()
+        mouse_scroll(-1)
+        sleep_1()
+        mouse_move(510, 220, 610, 320)
+        sleep_0()
+        pyautogui.click(button='left')
+        sleep_1()
+
+        #모험가 확인
+        # mouse_scroll(-1)
+        sleep_1()
+        pos = imagesearch("Q_hunt_2_2.png")
+        if pos[0] != -1:
+            search_click("Q_hunt_2_2.png")
+            sleep_1()
+            search_click("Q_hunt_2_3.png")
+            pos = imagesearch("Q_hunt_1_1.png")
+            continue
+
+        retries += 1
+        continue
+
 
 
 def Q_animal() :    #7교배소
@@ -353,8 +421,9 @@ def logout() :
 
 
 def main(): #test용
-    # login('agnus0', '1022')
-    Q_hunt_1()
+    # login('agnus1', '1022')
+    # first()
+    # Q_hunt_1()
     # Q_animal()
     # Q_luckybag()
     # Q_safari()
@@ -369,7 +438,7 @@ def main(): #test용
     # run()
     #
     # Q_friend()
-    # Q_hunt_2()
+    Q_hunt_2()
 
 
 if __name__ == '__main__':
