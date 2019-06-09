@@ -7,41 +7,7 @@ from datetime import datetime
 from imagesearch import *  #https://github.com/drov0/python-imagesearch
 
 
-def logout() :
-    mouse_click(800, 350, 840, 420)
-    # search_move("2_logout1.png")
-    # time.sleep(random.uniform(0.60001, 1.09999))
-    mouse_scroll(-1)
-    time.sleep(random.uniform(0.60001, 1.09999))
-    mouse_scroll(-1)
-    time.sleep(random.uniform(0.60001, 1.09999))
 
-    run()
-
-    search_click("2_logout2.png")
-    time.sleep(random.uniform(1.05001, 1.79987))
-
-    pos = imagesearch("2_logout3.png")
-    if pos[0] != -1:
-        search_click("2_logout3.png")
-        time.sleep(random.uniform(1.55001, 2.79987))
-    else :
-        print("somethine wrong~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-    #터틀맵 입장
-    run()
-    mouse_click(800, 350, 840, 420)
-    # search_move("2_logout4.png")
-    # time.sleep(random.uniform(0.60001, 1.09999))
-    mouse_scroll(-1)
-    run()
-    mouse_click(20, 200, 70, 310)
-    time.sleep(random.uniform(0.60001, 1.09999))
-    mouse_scroll(-1)
-    time.sleep(random.uniform(0.60001, 1.09999))
-    mouse_scroll(-1)
-    time.sleep(random.uniform(0.60001, 1.09999))
-    search_click("2_logout6.png")
-    time.sleep(random.uniform(0.05001, 0.19987))
 
 
 
@@ -77,7 +43,7 @@ def search_click(img, action='left'):
 def search_click_range(img, action='left'):
     duration=random.uniform(0.3, 0.7)
     pos = imagesearch(img)
-    print(pos[0], pos[1])
+    # print(pos[0], pos[1])
     if pos[0] != -1:
         if pos[0]>= 100 and pos[0] < 750 and pos[1] >= 70 and pos[1] < 420 :
             time.sleep(random.uniform(0.01, 0.3))
@@ -92,7 +58,7 @@ def search_click_range(img, action='left'):
 
 
 #마우스 클릭
-def mouse_click(top_x, top_y, bottom_x, bottom_y) :
+def mouse_move(top_x, top_y, bottom_x, bottom_y) :
     login_button = {
         'top_left': {
             'x': top_x,
@@ -162,8 +128,7 @@ def login(id, pw) :
 
 
 
-
-def first() :
+def first() :   #로그인시 클릭해야할것들 1
     max_retries = 2
     retries  = 0
     while True:
@@ -180,14 +145,33 @@ def first() :
             time.sleep(random.uniform(1.05001, 1.79987))
             search_click("3_first4.png")
             time.sleep(random.uniform(1.05001, 1.79987))
+
+            run_bell()
+            # Q_hunt_1()
+            # Q_animal()
+            # Q_luckybag()
+            # Q_safari()
+            # Q_village()
+            #
+            # run()
+            #
+            # mouse_move(800, 350, 840, 420)
+            # mouse_scroll(-1)
+            # time.sleep(random.uniform(0.60001, 1.09999))
+            #
+            # run()
+            #
+            # Q_friend()
+            # Q_hunt_2()
+
+
         else :
             retries += 1
             continue
 
 
 
-
-def run_bell() :
+def run_bell() :  #벨트리, 러브하우스 클릭
     max_retries = 2
     retries  = 0
     while True:
@@ -206,7 +190,8 @@ def run_bell() :
         continue
 
 
-def run() :
+
+def run() :  #클릭하기
     max_retries = 4
     retries  = 0
     while True:
@@ -231,13 +216,106 @@ def run() :
 
 
 
-def main():
-    # login('agnus0', '1022')
-    # first()
-    # run_bell()
-    run()
-    logout()
+def Q_hunt_1() :    #6모험가 확인
+    search_click("Q_hunt_1_1.png")
 
+def Q_hunt_2() :    #6모험가 모헙 보내기
+    search_click("4_building_bell.png")
+
+def Q_animal() :    #7교배소
+    search_click("4_building_bell.png")
+
+def Q_luckybag() :  #8럭키백
+    search_click("4_building_bell.png")
+
+def Q_safari() :    #9사파리
+    search_click("4_building_bell.png")
+
+def Q_village() :    #10마을 출석, 애정환원
+    search_click("4_building_bell.png")
+
+def Q_friend() :    #11친구애정주기
+    search_click("4_building_bell.png")
+
+def Q_reward() :    #12 업적 보상받기
+    search_click("4_building_bell.png")
+
+
+def logout() :
+    mouse_move(800, 350, 840, 420)
+    # search_move("2_logout1.png")
+    # time.sleep(random.uniform(0.60001, 1.09999))
+    mouse_scroll(-1)
+    time.sleep(random.uniform(0.60001, 1.09999))
+    mouse_scroll(-1)
+    time.sleep(random.uniform(0.60001, 1.09999))
+
+    run()
+
+    search_click("2_logout2.png")
+    time.sleep(random.uniform(1.05001, 1.79987))
+
+    pos = imagesearch("2_logout3.png")
+    if pos[0] != -1:
+        search_click("2_logout3.png")
+        time.sleep(random.uniform(1.55001, 2.79987))
+    else :
+        print("somethine wrong~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    #터틀맵 입장
+    run()
+    mouse_move(800, 350, 840, 420)
+    # search_move("2_logout4.png")
+    # time.sleep(random.uniform(0.60001, 1.09999))
+    mouse_scroll(-1)
+    run()
+    mouse_move(20, 200, 70, 310)
+    time.sleep(random.uniform(0.60001, 1.09999))
+    mouse_scroll(-1)
+    time.sleep(random.uniform(0.60001, 1.09999))
+    mouse_scroll(-1)
+    time.sleep(random.uniform(0.60001, 1.09999))
+    search_click("2_logout6.png")
+    time.sleep(random.uniform(0.05001, 0.19987))
+
+
+
+# def main():
+#     #최종
+#     search_click("0_tinyfarm.png")
+#     search_click("0_tinyfarm.png")    #35초 ~38초..
+#     id_str = 'agnus'
+#     num = [0, 1, 2, 3, 4, 5, 7, 9]
+#     pw = '1022'
+#
+#     for i in num :
+#         id = id_str + num
+#         print(datetime.today())
+#         print(id)
+#         login(id, pw)
+#         # first()
+#         # run_bell()
+#         # run()
+#         # logout()
+
+
+def main(): #test용
+    login('agnus0', '1022')
+    # Q_hunt_1()
+    # Q_animal()
+    # Q_luckybag()
+    # Q_safari()
+    # Q_village()
+    #
+    # run()
+    #
+    # mouse_move(800, 350, 840, 420)
+    # mouse_scroll(-1)
+    # time.sleep(random.uniform(0.60001, 1.09999))
+    #
+    # run()
+    #
+    # Q_friend()
+    # Q_hunt_2()
 
 
 if __name__ == '__main__':
