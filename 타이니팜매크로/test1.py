@@ -7,7 +7,16 @@ from datetime import datetime
 from imagesearch import *  #https://github.com/drov0/python-imagesearch
 
 
+def sleep_0():
+    time.sleep(random.uniform(0.05001, 0.19987))
 
+
+def sleep_1() :
+    time.sleep(random.uniform(0.45001, 1.29987))
+
+
+def sleep_2() :
+    time.sleep(random.uniform(1.05001, 1.79987))
 
 
 
@@ -28,13 +37,13 @@ def search_click(img, action='left'):
     duration=random.uniform(0.3, 0.7)
     pos = imagesearch(img)
     if pos[0] != -1:
-        time.sleep(random.uniform(0.01, 0.3))
+        sleep_0()
         img = cv2.imread(img)
         height, width, channels = img.shape
         offset = min(height, width)
         pyautogui.moveTo(pos[0] + r(width, -offset), pos[1] + r(height, -offset),
                          duration)
-        time.sleep(random.uniform(0.01, 0.3))
+        sleep_1()
         pyautogui.click(button=action)
 
 
@@ -46,13 +55,13 @@ def search_click_range(img, action='left'):
     # print(pos[0], pos[1])
     if pos[0] != -1:
         if pos[0]>= 100 and pos[0] < 750 and pos[1] >= 70 and pos[1] < 420 :
-            time.sleep(random.uniform(0.01, 0.3))
+            sleep_0()
             img = cv2.imread(img)
             height, width, channels = img.shape
             offset = min(height, width)
             pyautogui.moveTo(pos[0] + r(width, -offset), pos[1] + r(height, -offset),
                              duration)
-            time.sleep(random.uniform(0.01, 0.3))
+            sleep_1()
             pyautogui.click(button=action)
 
 
@@ -85,40 +94,40 @@ def mouse_scroll(m_scroll) :
 
 def login(id, pw) :
     search_click('1_login4.png')
-    time.sleep(random.uniform(0.05001, 0.19987))
+    sleep_0()
     search_click('1_login4.png')                       #logout
     time.sleep(random.uniform(2.5001, 3.9987))
 
     #id 입력
     search_click('1_login1.png')
-    time.sleep(random.uniform(0.15001, 0.29987))
+    sleep_2()
     pyautogui.press('end')
-    time.sleep(random.uniform(0.15001, 0.29987))
+    sleep_1()
     #backspace 7번
     pyautogui.press('backspace')
-    time.sleep(random.uniform(0.05001, 0.19987))
+    sleep_0()
     pyautogui.press('backspace')
-    time.sleep(random.uniform(0.05001, 0.19987))
+    sleep_0()
     pyautogui.press('backspace')
-    time.sleep(random.uniform(0.05001, 0.19987))
+    sleep_0()
     pyautogui.press('backspace')
-    time.sleep(random.uniform(0.05001, 0.19987))
+    sleep_0()
     pyautogui.press('backspace')
-    time.sleep(random.uniform(0.05001, 0.19987))
+    sleep_0()
     pyautogui.press('backspace')
-    time.sleep(random.uniform(0.05001, 0.19987))
+    sleep_0()
     pyautogui.press('backspace')
-    time.sleep(random.uniform(0.05001, 0.19987))
+    sleep_0()
     # pyautogui.press('backspace')
     pyautogui.typewrite(id, random.uniform(0.30001, 0.69999)) #한글 입력은 안 됨
-    time.sleep(random.uniform(0.05001, 0.19987))
+    sleep_1()
     pyautogui.press('tab')                           #pw 입력
-    time.sleep(random.uniform(0.05001, 0.19987))
+    sleep_1()
     pyautogui.typewrite(pw, random.uniform(0.30001, 0.69999))
     # pyautogui.press('tab')
     # pyautogui.press('Enter')
     search_click('1_login2.png')
-    time.sleep(random.uniform(2.5001, 3.9987))
+    time.sleep(random.uniform(2.5001, 4.9987))
     pos = imagesearch("1_login3.png")
     if pos[0] != -1:
         search_click("1_login3.png")
@@ -138,13 +147,13 @@ def first() :   #로그인시 클릭해야할것들 1
         presence = imagesearch("3_first1.png")
         if (presence[0] != -1) :
             search_click("3_first1.png")
-            time.sleep(random.uniform(1.05001, 1.79987))
+            sleep_2()
             search_click("3_first2.png")
-            time.sleep(random.uniform(1.05001, 1.79987))
+            sleep_2()
             search_click("3_first3.png")
-            time.sleep(random.uniform(1.05001, 1.79987))
+            sleep_2()
             search_click("3_first4.png")
-            time.sleep(random.uniform(1.05001, 1.79987))
+            sleep_2()
 
             run_bell()
             # Q_hunt_1()
@@ -176,7 +185,7 @@ def run_bell() :  #벨트리, 러브하우스 클릭
     retries  = 0
     while True:
         if retries >= max_retries:
-            time.sleep(random.uniform(0.80001, 1.89999))
+            sleep_2()
             break
         # presence = imagesearch("5_food1.png")
         # if (presence[0] != -1):
@@ -196,7 +205,7 @@ def run() :  #클릭하기
     retries  = 0
     while True:
         if retries >= max_retries:
-            time.sleep(random.uniform(0.80001, 1.89999))
+            sleep_2()
             break
         presence = imagesearch("5_food1.png")
         if (presence[0] == -1):
@@ -218,22 +227,22 @@ def run() :  #클릭하기
 
 def Q_hunt_1() :    #6모험가 확인
     search_click_range("Q_hunt_1_1.png")
-    time.sleep(random.uniform(1.05001, 1.79987))
+    sleep_2()
     search_click_range("Q_hunt_1_2.png")
-    time.sleep(random.uniform(0.45001, 1.29987))
+    sleep_1()
 
     max_retries = 3
     retries  = 0
     while True:
         if retries >= max_retries:
             search_click("Q_hunt_1_5.png")
-            time.sleep(random.uniform(0.80001, 1.89999))
+            sleep_2()
             break
         # presence = imagesearch("5_food1.png")
         # if (presence[0] != -1):
         search_click_range("Q_hunt_1_3.png")
         search_click_range("Q_hunt_1_3_1.png")
-        time.sleep(random.uniform(1.05001, 1.79987))
+        sleep_2()
         search_click_range("Q_hunt_1_4.png")
             # continue
         # else :
@@ -242,18 +251,24 @@ def Q_hunt_1() :    #6모험가 확인
 
 
 
-
-def Q_hunt_2() :    #6모험가 모헙 보내기
+def Q_hunt_2() :    #6모험가 모험 보내기
     search_click("Q_hunt_1_1.png")
+    time.sleep(random.uniform(1.05001, 1.79987))
+    max_retries = 3
+    retries  = 0
     while True :
         mouse_scroll(-1)
+        sleep_1()
         mouse_scroll(-1)
+        sleep_1()
         search_click("Q_hunt_2_2.png")
-        time.sleep(random.uniform(0.45001, 1.29987))
+        sleep_1()
+
         mouse_scroll(-1)
+        sleep_0()
         mouse_scroll(-1)
         search_click("Q_hunt_2_3.png")
-        time.sleep(random.uniform(0.45001, 1.29987))
+        sleep_1()
 
 
         search_click("Q_hunt_2_4.png")
@@ -284,14 +299,14 @@ def logout() :
     # search_move("2_logout1.png")
     # time.sleep(random.uniform(0.60001, 1.09999))
     mouse_scroll(-1)
-    time.sleep(random.uniform(0.60001, 1.09999))
+    sleep_1()
     mouse_scroll(-1)
-    time.sleep(random.uniform(0.60001, 1.09999))
+    sleep_1()
 
     run()
 
     search_click("2_logout2.png")
-    time.sleep(random.uniform(1.05001, 1.79987))
+    sleep_1()
 
     pos = imagesearch("2_logout3.png")
     if pos[0] != -1:
@@ -305,15 +320,16 @@ def logout() :
     # search_move("2_logout4.png")
     # time.sleep(random.uniform(0.60001, 1.09999))
     mouse_scroll(-1)
+    sleep_0()
     run()
     mouse_move(20, 200, 70, 310)
-    time.sleep(random.uniform(0.60001, 1.09999))
+    sleep_0()
     mouse_scroll(-1)
-    time.sleep(random.uniform(0.60001, 1.09999))
+    sleep_0()
     mouse_scroll(-1)
-    time.sleep(random.uniform(0.60001, 1.09999))
+    sleep_1()
     search_click("2_logout6.png")
-    time.sleep(random.uniform(0.05001, 0.19987))
+    sleep_0()
 
 
 
