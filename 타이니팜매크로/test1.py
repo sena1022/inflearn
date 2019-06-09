@@ -138,45 +138,41 @@ def login(id, pw) :
 
 
 def first() :   #로그인시 클릭해야할것들 1
-    max_retries = 2
-    retries  = 0
-    while True:
-        if retries >= max_retries:
-            break
-        time.sleep(random.uniform(3.55001, 5.79987))
-        presence = imagesearch("3_first1.png")
-        if (presence[0] != -1) :
-            search_click("3_first1.png")
-            sleep_2()
-            search_click("3_first2.png")
-            sleep_2()
-            search_click("3_first3.png")
-            sleep_2()
-            search_click("3_first4.png")
-            sleep_2()
+    pos = imagesearch("1_login4.png")
+    while pos[0] != -1:
+        pos = imagesearch("1_login4.png")
+        sleep_2()
 
-            run_bell()
-            # Q_hunt_1()
-            # Q_animal()
-            # Q_luckybag()
-            # Q_safari()
-            # Q_village()
-            #
-            # run()
-            #
-            # mouse_move(800, 350, 840, 420)
-            # mouse_scroll(-1)
-            # time.sleep(random.uniform(0.60001, 1.09999))
-            #
-            # run()
-            #
-            # Q_friend()
-            # Q_hunt_2()
+    print("loopout")
+    presence = imagesearch("3_first1.png")
+    if (presence[0] != -1) :
+        search_click("3_first1.png")
+        sleep_2()
+        search_click("3_first2.png")
+        sleep_2()
+        search_click("3_first3.png")
+        sleep_2()
+        search_click("3_first4.png")
+        sleep_2()
 
+        run_bell()
+        # Q_hunt_1()
+        # Q_animal()
+        # Q_luckybag()
+        # Q_safari()
+        # Q_village()
+        #
+        # run()
+        #
+        # mouse_move(800, 350, 840, 420)
+        # mouse_scroll(-1)
+        # time.sleep(random.uniform(0.60001, 1.09999))
+        #
+        # run()
+        #
+        # Q_friend()
+        # Q_hunt_2()
 
-        else :
-            retries += 1
-            continue
 
 
 
@@ -344,7 +340,32 @@ def Q_hunt_2() :    #6모험가 모험 보내기
 
 
 def Q_animal() :    #7교배소
-    search_click("4_building_bell.png")
+    search_click("Q_animal_1.png")
+    sleep_1()
+    search_click("Q_animal_1_1.png")
+    sleep_1()
+    mouse_move(450, 320, 720, 350)
+    sleep_0()
+    pyautogui.click(button='left')
+    sleep_1()
+
+    search_click("Q_animal_2.png")
+    sleep_1()
+    search_click("Q_animal_3.png")
+    sleep_2()
+    sleep_2()
+    sleep_2()
+    search_click("Q_animal_4.png")
+    sleep_1()
+    search_click("Q_animal_5.png")
+    sleep_2()
+    search_click("Q_animal_6.png")
+    sleep_2()
+    sleep_2()
+    sleep_2()
+    search_click("Q_animal_7.png")
+    sleep_1()
+
 
 def Q_luckybag() :  #8럭키백
     search_click("4_building_bell.png")
@@ -421,9 +442,9 @@ def logout() :
 
 
 def main(): #test용
-    # login('agnus1', '1022')
+    # login('agnus0', '1022')
     # first()
-    # Q_hunt_1()
+    Q_hunt_1()
     # Q_animal()
     # Q_luckybag()
     # Q_safari()
