@@ -217,10 +217,48 @@ def run() :  #클릭하기
 
 
 def Q_hunt_1() :    #6모험가 확인
-    search_click("Q_hunt_1_1.png")
+    search_click_range("Q_hunt_1_1.png")
+    time.sleep(random.uniform(1.05001, 1.79987))
+    search_click_range("Q_hunt_1_2.png")
+    time.sleep(random.uniform(0.45001, 1.29987))
+
+    max_retries = 3
+    retries  = 0
+    while True:
+        if retries >= max_retries:
+            search_click("Q_hunt_1_5.png")
+            time.sleep(random.uniform(0.80001, 1.89999))
+            break
+        # presence = imagesearch("5_food1.png")
+        # if (presence[0] != -1):
+        search_click_range("Q_hunt_1_3.png")
+        search_click_range("Q_hunt_1_3_1.png")
+        time.sleep(random.uniform(1.05001, 1.79987))
+        search_click_range("Q_hunt_1_4.png")
+            # continue
+        # else :
+        retries += 1
+        continue
+
+
+
 
 def Q_hunt_2() :    #6모험가 모헙 보내기
-    search_click("4_building_bell.png")
+    search_click("Q_hunt_1_1.png")
+    while True :
+        mouse_scroll(-1)
+        mouse_scroll(-1)
+        search_click("Q_hunt_2_2.png")
+        time.sleep(random.uniform(0.45001, 1.29987))
+        mouse_scroll(-1)
+        mouse_scroll(-1)
+        search_click("Q_hunt_2_3.png")
+        time.sleep(random.uniform(0.45001, 1.29987))
+
+
+        search_click("Q_hunt_2_4.png")
+        time.sleep(random.uniform(0.45001, 1.29987))
+
 
 def Q_animal() :    #7교배소
     search_click("4_building_bell.png")
@@ -299,8 +337,8 @@ def logout() :
 
 
 def main(): #test용
-    login('agnus0', '1022')
-    # Q_hunt_1()
+    # login('agnus0', '1022')
+    Q_hunt_1()
     # Q_animal()
     # Q_luckybag()
     # Q_safari()
