@@ -1,10 +1,153 @@
+# cd C:\Users\agnus\Documents\Inflearn\타이니팜매크로
+# 로그인 창에서 영문 체크
+# python 0_test.py
+
+
+# yieh2
+# ha-41777
+# rapidash05
+# nanhee4478
+# Jeasung0
+
+
 import pyautogui as pag
 import random, time, subprocess
 import mss, cv2
 import numpy as np
 from datetime import datetime
+import os
 
 from imagesearch import *  #https://github.com/drov0/python-imagesearch
+
+
+def main():
+    tinyfarm()
+
+    id_str = 'agnus'
+    num = [0, 1, 2, 3, 4, 5, 7, 8]
+    # num = [ 1, 2, 3, 4, 5, 7, 8]
+    pw = '1022'
+
+    for i in num :
+        id = id_str + str(i)
+        print(datetime.today())
+        print(id)
+        login(id, pw)
+        first()
+
+        run_bell()
+
+        print("            11. 사파리")
+        Q_safari()
+
+        print("            12. 밭 수거")
+        Q_farm()
+        search_click_range("5_food3.png")
+
+        print("            13. 모험 보내기")
+        Q_hunt_2()
+
+        print("            14. 일일 업적 확인")
+        Q_reward()
+
+        mouse_move(800, 350, 840, 420)
+        # search_move("2_logout1.png")
+        # time.sleep(random.uniform(0.60001, 1.09999))
+        mouse_scroll(-1)
+        sleep_1()
+        mouse_scroll(-1)
+        sleep_1()
+
+        run2()
+        mouse_move(800, 350, 840, 420)
+        mouse_scroll(-1)
+
+        print("            logout하기")
+        logout()
+
+    turn_off()
+
+
+# def main():
+#     run_bell()
+#
+#     print("            6. 모험 확인하기")
+#     Q_hunt_1()
+#
+#     print("            7. 교배소")
+#     Q_animal()
+#     #
+#     print("            8. 럭키백")
+#     Q_luckybag()
+#
+#
+#     print("            9. 마을출석, 애정환원")
+#     Q_village()
+#
+#     print("            11. 사파리")
+#     Q_safari()
+#
+#     print("            12. 밭 수거")
+#     Q_farm()
+#
+#     run()
+#
+#     mouse_move(800, 350, 840, 420)
+#     mouse_scroll(-1)
+#     time.sleep(random.uniform(0.60001, 1.09999))
+#     mouse_scroll(-1)
+#     time.sleep(random.uniform(0.60001, 1.09999))
+#     #
+#     run() #+확인버튼
+#     #프렌드 막히는 부분 수정하기
+#     print("            10. 친구 애정주기")
+#     Q_friend()
+#
+#     run_bell()
+#     Q_hunt_2()
+#     Q_reward()
+#
+#     logout()
+
+
+def tinyfarm() :
+    search_click("0_tinyfarm.png")
+    pyautogui.click(button='left')
+    pyautogui.click(button='left')
+
+    pos = imagesearch("1_login4.png")
+    while pos[1] == -1:
+        pos = imagesearch("1_login4.png")
+        search_click("0_tinyfarm1.png")
+        search_click("0_tinyfarm2.png")
+        search_click("0_tinyfarm3.png")
+        sleep_2()
+
+    search_click("0_tinyfarm3.png")
+    search_click("0_tinyfarm3.png")
+    search_click("0_tinyfarm3.png")
+    search_click('1_login4.png')
+    sleep_0()
+    search_click("0_tinyfarm3.png")
+    search_click('1_login4.png')                       #logout
+    time.sleep(random.uniform(2.5001, 3.9987))
+
+    #id 입력
+    pos = imagesearch("1_login2.png")
+    while pos[1] == -1:
+        pos = imagesearch("1_login2.png")
+        search_click('1_login4.png')
+        sleep_2()
+
+    search_click('1_login1.png')
+    sleep_2()
+
+    search_click('1_login1_1.png')
+
+
+def turn_off():
+    print("컴퓨터 종료하기")
+    os.system('shutdown -s')
 
 
 def sleep_0():
@@ -19,7 +162,6 @@ def sleep_2() :
     time.sleep(random.uniform(1.05001, 1.79987))
 
 
-
 def search_move(img):
     duration=random.uniform(0.3, 0.7)
     pos = imagesearch(img)
@@ -30,7 +172,6 @@ def search_move(img):
         offset = min(height, width)
         pyautogui.moveTo(pos[0] + r(width, -offset), pos[1] + r(height, -offset),
                          duration)
-
 
 
 def search_click(img, action='left'):
@@ -47,6 +188,7 @@ def search_click(img, action='left'):
         pyautogui.click(button=action)
 
 
+
 # x: 100              y : 70
 # x: 750              y : 420
 def search_click_range(img, action='left'):
@@ -55,13 +197,13 @@ def search_click_range(img, action='left'):
     # print(pos[0], pos[1])
     if pos[0] != -1:
         if pos[0]>= 100 and pos[0] < 750 and pos[1] >= 70 and pos[1] < 420 :
-            sleep_0()
+            # sleep_0()
             img = cv2.imread(img)
             height, width, channels = img.shape
             offset = min(height, width)
             pyautogui.moveTo(pos[0] + r(width, -offset), pos[1] + r(height, -offset),
                              duration)
-            sleep_1()
+            sleep_0()
             pyautogui.click(button=action)
 
 
@@ -85,22 +227,17 @@ def mouse_move(top_x, top_y, bottom_x, bottom_y) :
     )
 
 
-
 def mouse_scroll(m_scroll) :
     pyautogui.scroll(m_scroll) #위로 위로 위로위로
     # pyautogui.scroll(-200) #아래로 내림
 
 
-
+#로그인
 def login(id, pw) :
-    search_click('1_login4.png')
-    sleep_0()
-    search_click('1_login4.png')                       #logout
-    time.sleep(random.uniform(2.5001, 3.9987))
 
     #id 입력
     pos = imagesearch("1_login2.png")
-    while pos[0] == -1:
+    while pos[1] == -1:
         pos = imagesearch("1_login2.png")
         search_click('1_login4.png')
         sleep_2()
@@ -110,6 +247,8 @@ def login(id, pw) :
     pyautogui.press('end')
     sleep_1()
     #backspace 7번
+    pyautogui.press('backspace')
+    sleep_0()
     pyautogui.press('backspace')
     sleep_0()
     pyautogui.press('backspace')
@@ -136,15 +275,18 @@ def login(id, pw) :
     sleep_0()
     search_click('1_login2.png')
     time.sleep(random.uniform(2.5001, 4.9987))
+    search_click("0_tinyfarm3.png")
+    sleep_0()
     pos = imagesearch("1_login3.png")
     if pos[0] != -1:
         search_click("1_login3.png")
         time.sleep(random.uniform(1.55001, 2.79987))
     else :
-        print("somethine wrong~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        print("something wrong~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        restart()
 
 
-
+#first
 def first() :   #로그인시 클릭해야할것들 1
     pos = imagesearch("1_login4.png")
     while pos[0] != -1:
@@ -166,6 +308,7 @@ def first() :   #로그인시 클릭해야할것들 1
 
         print("            6. 모험 확인하기")
         Q_hunt_1()
+        search_click_range("5_food3.png")
 
         print("            7. 교배소")
         Q_animal()
@@ -173,14 +316,9 @@ def first() :   #로그인시 클릭해야할것들 1
         print("            8. 럭키백")
         Q_luckybag()
 
-        print("            9. 사파리")
-        Q_safari()
-
-        print("            10. 마을출석, 애정환원")
+        print("            9. 마을출석, 애정환원")
         Q_village()
-
-        # print("            12. 밭 수거")
-        # Q_farm()
+        search_click_range("5_food3.png")
 
         run()
 
@@ -192,32 +330,43 @@ def first() :   #로그인시 클릭해야할것들 1
         #
         run() #+확인버튼
         #프렌드 막히는 부분 수정하기
-        print("            11. 친구 애정주기")
+        print("            10. 친구 애정주기")
         Q_friend()
+        search_click_range("5_food3.png")
         #나갔다 오는게 나을듯..
+    else :
+        search_click("3_first5.png")
+        sleep_2()
+        print("            6-1. 모험 확인하기")
+        Q_hunt_1()
 
 
-#4 run_bell
+#run_bell
 def run_bell() :  #벨트리, 러브하우스 클릭
-    max_retries = 3
+    max_retries = 4
     retries  = 0
     while True:
         if retries >= max_retries:
             sleep_2()
             break
+
         # presence = imagesearch("5_food1.png")
         # if (presence[0] != -1):
         search_click("4_building_bell.png")
         search_click("4_building_bell2.png")
         search_click("4_building_love.png")
         search_click("4_building_love2.png")
+        search_click_range("4_building2.png")
+        search_click_range("4_building3.png")
+        search_click_range("5_food3.png")
             # continue
         # else :
         retries += 1
         continue
 
 
-#5 run
+
+#run
 def run() :  #클릭하기
     max_retries = 4
     retries  = 0
@@ -226,14 +375,16 @@ def run() :  #클릭하기
             sleep_2()
             break
         presence = imagesearch("5_food1.png")
-        if (presence[0] == -1):
+        if (presence[1] == -1):
             retries += 1
             continue
         else :
             search_click_range("4_building2.png")
+            search_click_range("4_building3.png")
 
             search_click_range("5_food1.png")
             search_click_range("5_food2.png")
+            search_click_range("5_food3.png")
 
             search_click_range("friend1.png")
             search_click_range("friend2.png")
@@ -244,23 +395,48 @@ def run() :  #클릭하기
 
 
 
-def Q_hunt_1() :    #6모험가 확인
-    sleep_1()
-    search_click_range("Q_hunt_1_1.png")
+def run2() :  #클릭하기
+    max_retries = 4
+    retries  = 0
+    while True:
+        if retries >= max_retries:
+            sleep_2()
+            break
+        presence = imagesearch("5_food1.png")
+        if (presence[1] == -1):
+            retries += 1
+            continue
+        else :
+            search_click_range("4_building2.png")
+            search_click_range("4_building3.png")
 
+            search_click_range("5_food1.png")
+            search_click_range("5_food2.png")
+            search_click_range("5_food3.png")
+            search_click_range("5_food3_1.png")
+            # search_click_range("friend1.png")
+            # search_click_range("friend2.png")
+            # search_click_range("friend3.png")
+
+            search_click_range("2_logout4_building1.png")
+            continue
+
+
+
+#6 모험가 확인
+def Q_hunt_1() :    #6모험가 확인
     max_retries = 3
     retries  = 0
-    pos = imagesearch("Q_hunt_1_2.png")
+    pos = imagesearch("Q_hunt_1_1.png")
     while pos[0] != -1:
         if retries >= max_retries:
             relogin()
             break
         search_click_range("Q_hunt_1_1.png")
-        pos = imagesearch("Q_hunt_1_2.png")
         sleep_2()
+        pos = imagesearch("Q_hunt_1_1.png")
         retries += 1
         continue
-
 
     search_click_range("Q_hunt_1_2.png")
     sleep_1()
@@ -271,6 +447,7 @@ def Q_hunt_1() :    #6모험가 확인
         if retries >= max_retries:
             search_click("Q_hunt_1_5.png")
             sleep_2()
+            search_click("Q_hunt_1_5.png")
             break
         # presence = imagesearch("5_food1.png")
         # if (presence[0] != -1):
@@ -278,6 +455,7 @@ def Q_hunt_1() :    #6모험가 확인
         search_click_range("Q_hunt_1_3_1.png")
         sleep_2()
         search_click_range("Q_hunt_1_4.png")
+        sleep_1()
             # continue
         # else :
         retries += 1
@@ -286,14 +464,24 @@ def Q_hunt_1() :    #6모험가 확인
 
 
 def Q_hunt_2() :    #6모험가 모험 보내기
-    search_click("Q_hunt_1_1.png")
-    sleep_0()
-    search_click("Q_hunt_1_1.png")
-    sleep_2()
+    max_retries = 3
+    retries  = 0
+    pos = imagesearch("Q_hunt_1_1.png")
+    while pos[0] != -1:
+        if retries >= max_retries:
+            relogin()
+            break
+        search_click_range("Q_hunt_1_1.png")
+        sleep_2()
+        pos = imagesearch("Q_hunt_1_1.png")
+        retries += 1
+        continue
+
+
     max_retries = 2
     retries  = 0
     pos = imagesearch("Q_hunt_2_2.png")
-    while pos[0] == -1 :
+    while pos[1] == -1 :
         if retries >= max_retries:
             search_click("Q_hunt_1_5.png")
             search_click("Q_hunt_1_5.png")
@@ -398,14 +586,30 @@ def Q_hunt_2() :    #6모험가 모험 보내기
 
 
 def Q_animal() :    #7교배소
-    search_click("Q_animal_1.png")
-    sleep_1()
-    search_click("Q_animal_1_1.png")
-    sleep_1()
-    mouse_move(450, 320, 720, 350)
-    sleep_0()
-    pyautogui.click(button='left')
-    sleep_1()
+    pos = imagesearch("Q_animal_1.png")
+    while pos[0] != -1:
+        search_click("Q_animal_1.png")
+        search_click("Q_animal_1_1.png")
+        sleep_2()
+        pos = imagesearch("Q_animal_1.png")
+
+    # mouse_move(455, 320, 720, 350)
+    # sleep_0()
+    # pyautogui.click(button='left')
+    # sleep_2()
+
+    search_click("Q_animal_1_2.png")
+    sleep_2()
+
+    pos = imagesearch("Q_animal_2.png")
+    while pos[1] == -1:
+        print( " 교배소 클릭 미스 ")
+        search_click("Q_animal_2_1.png")
+        sleep_2()
+        search_click("Q_animal_2_2.png")
+        search_click("Q_animal_2_2.png")
+        pos = imagesearch("Q_animal_2.png")
+
 
     search_click("Q_animal_2.png")
     sleep_1()
@@ -433,7 +637,6 @@ def Q_animal() :    #7교배소
     search_click("Q_animal_6.png")
     sleep_2()
     sleep_2()
-    sleep_2()
     print("엑스 안누르나??")
     search_click("Q_animal_7.png")
     sleep_1()
@@ -441,57 +644,77 @@ def Q_animal() :    #7교배소
 
 
 def Q_luckybag() :  #8럭키백
-    mouse_move(800, 70, 840, 100)
-    sleep_0()
-    pyautogui.click(button='left')
-    sleep_1()
+    pos = imagesearch("Q_luckbag1.png")
+    while pos[1] == -1:
+        mouse_move(800, 70, 840, 100)
+        sleep_0()
+        pyautogui.click(button='left')
+        sleep_1()
+        pos = imagesearch("Q_luckbag1.png")
+
     search_click("Q_luckbag1.png")
-    sleep_1()
-    search_click("Q_luckbag2.png")
-    sleep_1()
-    search_click("Q_luckbag3.png")
-    sleep_1()
-    search_click("Q_luckbag3.png")
 
     pos = imagesearch("Q_luckbag4.png")
     while pos[0] == -1:
         pos = imagesearch("Q_luckbag4.png")
+        search_click("Q_luckbag2.png")
+        search_click("Q_luckbag3.png")
         sleep_2()
 
     search_click("Q_luckbag4.png")
-    sleep_1()
+    sleep_2()
     search_click("Q_luckbag5.png")
-    sleep_1()
     sleep_2()
+    search_click("Q_luckbag4.png")
     sleep_2()
-
+    search_click("Q_luckbag5.png")
+    sleep_2()
+    search_click("Q_luckbag4.png")
+    sleep_2()
+    search_click("Q_luckbag5.png")
+    sleep_2()
+    search_click("Q_luckbag5.png")
 
 
 def Q_safari() :    #9사파리
-    mouse_move(800, 200, 840, 240)
-    sleep_0()
-    pyautogui.click(button='left')
-    sleep_1()
+    pos = imagesearch("Q_safari1.png")
+    while pos[1] == -1:
+        mouse_move(800, 200, 840, 240)
+        sleep_0()
+        pyautogui.click(button='left')
+        sleep_1()
+        pos = imagesearch("Q_safari1.png")
+        if imagesearch("Q_safari1_1.png")[0] != -1:
+            break
+
+    if imagesearch("Q_safari1_1.png")[0] != -1:
+        search_click("Q_safari5.png")
+        return
+
     search_click("Q_safari1.png")
     sleep_1()
     search_click("Q_safari2.png")
 
-    pos = imagesearch("Q_safari3_1.png")
+    pos = imagesearch("Q_safari3.png")
     while pos[0] == -1:
-        pos = imagesearch("Q_safari3_1.png")
-        sleep_1()
+        pos = imagesearch("Q_safari3.png")
+        sleep_2()
 
     sleep_2()
     print("사파리 나가기")
     search_click("Q_safari3.png")
     sleep_1()
+    search_click("Q_safari3.png")
+    search_click("Q_safari4.png")
+    sleep_2()
+    sleep_1()
+    search_click("Q_safari3.png")
     search_click("Q_safari4.png")
     sleep_2()
     search_click("Q_safari5.png")
-    sleep_1()
     sleep_2()
     sleep_2()
-
+    search_click("Q_safari5.png")
 
 
 def Q_village() :    #10마을 출석, 애정환원
@@ -534,27 +757,32 @@ def Q_village() :    #10마을 출석, 애정환원
 
 
 def Q_friend() :    #11친구애정주기
-    mouse_move(30, 480, 70, 500)
-    sleep_0()
-    pyautogui.click(button='left')
-    sleep_0()
-    pyautogui.click(button='left')
-    sleep_2()
+    pos = imagesearch("Q_friend1_1.png")
+    while pos[1] == -1:
+        mouse_move(30, 480, 60, 500)
+        sleep_0()
+        pyautogui.click(button='left')
+        sleep_0()
+        search_click("Q_friend1_2.png")
+        pos = imagesearch("Q_friend1_1.png")
+
     #알프레도 농장
     mouse_move(450, 170, 720, 250)
     sleep_0()
     pyautogui.click(button='left')
     sleep_0()
+    mouse_move(450, 170, 720, 250)
     pyautogui.click(button='left')
 
     pos = imagesearch("Q_friend1.png")
-    max_retries = 3
+    max_retries = 5
     retries = 0
     while pos[0] == -1:
         if retries >= max_retries:
             break
         pos = imagesearch("Q_friend1.png")
         sleep_2()
+        retries += 1
 
     search_click("Q_friend1.png")
     sleep_1()
@@ -574,13 +802,13 @@ def Q_friend() :    #11친구애정주기
     # search_click("Q_friend2_1.png")
     # search_click("Q_friend2.png")
 
-    for i in range(0, 12) :
-        mouse_move(815, 330, 830, 370)  #오른쪽 친구이동 클릭
-        pyautogui.click(button='left')
-        sleep_1()
+    for i in range(0, 13) :
+        # mouse_move(815, 330, 830, 370)  #오른쪽 친구이동 클릭
+        # pyautogui.click(button='left')
+        # sleep_1()
 
         pos = imagesearch("Q_friend1.png")
-        max_retries = 3
+        max_retries = 5
         retries = 0
         while pos[0] == -1:
             if retries >= max_retries:
@@ -588,10 +816,12 @@ def Q_friend() :    #11친구애정주기
             pos = imagesearch("Q_friend1.png")
             search_click("Q_friend2_1.png")
             mouse_move(815, 330, 830, 370)
+            mouse_scroll(-1)
+            mouse_move(815, 330, 830, 370)
             pyautogui.click(button='left')
             search_click("Q_friend2_1.png")
-            mouse_scroll(-1)
             sleep_2()
+            retries += 1
 
         search_click("Q_friend1.png")
         sleep_1()
@@ -625,32 +855,65 @@ def Q_friend() :    #11친구애정주기
         sleep_1()
 
 
-##############################################
-def Q_farm() :      #12 밭 수거
-    search_click("Q_farm1.png")
-    pos = imagesearch("Q_farm2.png")
-    while pos[1] == -1:
-        pos = imagesearch("Q_reward1.png")
 
+def Q_farm() :      #12 밭 수거
+    pos = imagesearch("Q_farm2_1.png")
+    max_retries = 7
+    retries = 0
+    while pos[0] == -1:
+        if retries >= max_retries:
+            search_click("Q_farm6.png")
+            break
+        search_click("Q_farm1.png")
+        search_click("Q_farm1_1.png")
+        search_click("Q_farm1_2.png")
+        sleep_2()
+        pos = imagesearch("Q_farm2_1.png")
+        retries += 1
 
     search_click("Q_farm2.png")
-
-
+    sleep_2()
+    sleep_2()
     search_click("Q_farm3.png")
-
+    sleep_2()
+    sleep_2()
+    search_click("Q_farm3.png")
     search_click("Q_farm4.png")
+    sleep_2()
+    search_click("Q_farm3.png")
+    search_click("Q_farm4.png")
+    sleep_2()
+    search_click("Q_farm4.png")
+    sleep_2()
     search_click("Q_farm5.png")
+    sleep_2()
+    search_click("Q_farm5.png")
+    sleep_2()
     search_click("Q_farm6.png")
-
-
+    search_click("Q_farm6.png")
+    sleep_2()
+    sleep_2()
+    search_click("Q_farm7.png")
+    sleep_2()
+    sleep_2()
+    search_click("Q_farm8.png")
+    sleep_2()
+    sleep_2()
+    search_click("Q_farm9.png")
+    sleep_2()
+    search_click("Q_farm10.png")
+    sleep_0()
 
 
 def Q_reward() :    #13 업적 보상받기
-    mouse_move(20, 200, 70, 240)
-    sleep_0()
-    pyautogui.click(button='left')
-    sleep_2()
-    sleep_2()
+    pos = imagesearch("Q_reward1_1.png")
+    while pos[1] == -1:
+        mouse_move(20, 200, 70, 240)
+        sleep_0()
+        pyautogui.click(button='left')
+        sleep_2()
+        pos = imagesearch("Q_reward1_1.png")
+
 
     pos = imagesearch("Q_reward1.png")
     while pos[0] != -1:
@@ -677,17 +940,15 @@ def Q_reward() :    #13 업적 보상받기
 
 
 def logout() :
-    mouse_move(800, 350, 840, 420)
-    # search_move("2_logout1.png")
-    # time.sleep(random.uniform(0.60001, 1.09999))
-    mouse_scroll(-1)
-    sleep_1()
-    mouse_scroll(-1)
-    sleep_1()
-
-    # run()
-
     search_click("2_logout2.png")
+    sleep_1()
+    search_click("2_logout2_1.png")
+    sleep_1()
+    search_click("2_logout2_2.png")
+    sleep_1()
+    search_click("2_logout2_1.png")
+    sleep_1()
+    search_click("2_logout2_2.png")
     sleep_1()
 
     pos = imagesearch("2_logout3.png")
@@ -695,15 +956,16 @@ def logout() :
         search_click("2_logout3.png")
         time.sleep(random.uniform(1.55001, 2.79987))
     else :
-        print("somethine wrong~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        print("something wrong~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     #터틀맵 입장
-    run()
+    sleep_1()
+    run2()
     mouse_move(800, 350, 840, 420)
     # search_move("2_logout4.png")
     # time.sleep(random.uniform(0.60001, 1.09999))
     mouse_scroll(-1)
     sleep_0()
-    run()
+    run2()
 
     pos = imagesearch("2_logout6.png")
     while pos[0] == -1:
@@ -721,67 +983,10 @@ def logout() :
 def restart() :
     print('아예 끄고 다시 해보기')
 
+
 def relogin() :
     print('로그인 다시 하기')
 
-# def main():
-    #최종
-    # search_click("0_tinyfarm.png")
-    # search_click("0_tinyfarm.png")    #35초 ~38초..
-    id_str = 'agnus'
-    num = [0, 1, 2, 3, 4, 5, 7, 8]
-    # num = [8]
-    pw = '1022'
-
-    for i in num :
-        id = id_str + str(i)
-        print(datetime.today())
-        print(id)
-        login(id, pw)
-        first()
-
-        run_bell()
-        Q_hunt_2()
-        Q_reward()
-
-        logout()
-
-
-#Q_farm()
-#         # run_bell()
-#         # run()
-#         # logout()
-
-
-# def main(): #test용
-#     login('agnus0', '1022')
-#     first()
-    # run_bell()
-    # Q_hunt_1()
-#     Q_animal()
-#     Q_luckybag()
-#     Q_safari()
-    # Q_village()
-#
-    # run()
-#
-#     mouse_move(800, 350, 840, 420)
-#     mouse_scroll(-1)
-#     time.sleep(random.uniform(0.60001, 1.09999))
-#     mouse_scroll(-1)
-#     time.sleep(random.uniform(0.60001, 1.09999))
-#     #
-#     run() #+확인버튼
-#     #프렌드 막히는 부분 수정하기
-#     Q_friend()
-#     #나갔다 오는게 나을듯..
-#     Q_hunt_2()
-#     Q_reward()
-#
-#     logout()
 
 if __name__ == '__main__':
     main()
-
-
-#3 완료
