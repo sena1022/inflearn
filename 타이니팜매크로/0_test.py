@@ -22,11 +22,11 @@ from imagesearch import *  #https://github.com/drov0/python-imagesearch
 
 def main():
     tinyfarm()
-#
+
     id_str = 'agnus'
-    num = [8, 7, 5, 4, 3, 2, 1, 0]
-    # num = [0, 1, 2, 3, 4, 5, 7, 8]
-    # num = [ 4, 5, 7, 8]
+    # num = [8, 7, 5, 4, 3, 2, 1, 0]
+    num = [0, 1, 2, 3, 4, 5, 7, 8]
+    # num = [4, 5, 7, 8]
     pw = '1022'
 
     for i in num :
@@ -65,6 +65,8 @@ def main():
 
         print("            logout하기")
         logout()
+        sleep_2()
+        sleep_2()
 
     turn_off()
 
@@ -73,7 +75,7 @@ def main():
 #     run_bell()
 #
 #     print("            6. 모험 확인하기")
-#     Q_hunt_1()
+    # Q_hunt_1()
 #
     # print("            7. 교배소")
     # Q_animal()
@@ -342,6 +344,7 @@ def first() :   #로그인시 클릭해야할것들 1
     else :
         search_click("3_first5.png")
         sleep_2()
+        run_bell()
         print("            6-1. 모험 확인하기")
         Q_hunt_1()
 
@@ -364,6 +367,7 @@ def run_bell() :  #벨트리, 러브하우스 클릭
         search_click_range("4_building2.png")
         search_click_range("4_building3.png")
         search_click_range("5_food3.png")
+        search_click("4_building_love1.png")
             # continue
         # else :
         retries += 1
@@ -476,10 +480,12 @@ def Q_hunt_1() :    #6모험가 확인
         # presence = imagesearch("5_food1.png")
         # if (presence[0] != -1):
         # search_click_range("Q_hunt_1_3.png")
-        search_click_range("Q_hunt_1_3_1.png")
+        search_click("Q_hunt_1_3.png")
+        search_click("Q_hunt_1_3_1.png")
         sleep_2()
         search_click_range("Q_hunt_1_4.png")
         sleep_1()
+        search_click_range("Q_hunt_1_4.png")
             # continue
         # else :
         retries += 1
@@ -887,7 +893,7 @@ def Q_farm() :      #12 밭 수거
     pos = imagesearch("Q_farm2_1.png")
     max_retries = 7
     retries = 0
-    while pos[0] == -1:
+    while pos[1] == -1:
         if retries >= max_retries:
             search_click("Q_farm6.png")
             break
@@ -898,29 +904,38 @@ def Q_farm() :      #12 밭 수거
         pos = imagesearch("Q_farm2_1.png")
         retries += 1
 
-    search_click("Q_farm2.png")
-    sleep_2()
-    sleep_2()
-    search_click("Q_farm3.png")
-    sleep_2()
-    sleep_2()
-    search_click("Q_farm3.png")
-    search_click("Q_farm4.png")
-    sleep_2()
-    search_click("Q_farm3.png")
-    search_click("Q_farm4.png")
-    sleep_2()
-    search_click("Q_farm4.png")
-    sleep_2()
-    search_click("Q_farm5.png")
-    sleep_2()
-    search_click("Q_farm5.png")
-    sleep_2()
-    pos = imagesearch("Q_friend4.png")
-    while pos[1] == -1:
-        search_click("Q_farm6.png")
+    pos = imagesearch("Q_farm2_2.png")
+    if pos[0] != -1:
         pos = imagesearch("Q_friend4.png")
-        sleep_0()
+        while pos[1] == -1:
+            search_click("Q_farm6.png")
+            search_click("Q_farm2_3.png")
+            pos = imagesearch("Q_friend4.png")
+            sleep_0()
+    else :
+        search_click("Q_farm2.png")
+        sleep_2()
+        sleep_2()
+        search_click("Q_farm3.png")
+        sleep_2()
+        sleep_2()
+        search_click("Q_farm3.png")
+        search_click("Q_farm4.png")
+        sleep_2()
+        search_click("Q_farm3.png")
+        search_click("Q_farm4.png")
+        sleep_2()
+        search_click("Q_farm4.png")
+        sleep_2()
+        search_click("Q_farm5.png")
+        sleep_2()
+        search_click("Q_farm5.png")
+        sleep_2()
+        pos = imagesearch("Q_friend4.png")
+        while pos[1] == -1:
+            search_click("Q_farm6.png")
+            pos = imagesearch("Q_friend4.png")
+            sleep_0()
     sleep_1()
     search_click("Q_farm7.png")
     sleep_2()
